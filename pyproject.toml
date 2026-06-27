@@ -1,0 +1,30 @@
+[project]
+name = "condition-ir"
+version = "0.1.0"
+description = "Typed Common Expression Language (CEL) condition IR: type-checked CheckedConditions with Z3 SMT, SQL, Python-AST, and ESTree backends and a deterministic JSON codec"
+readme = "README.md"
+license = "MIT"
+authors = [
+    { name = "Q", email = "q.alpha@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "cel-parser @ git+https://github.com/ctoth/cel-parser.git@96fc4808ef78257ea03549e6298629a9583865c8",
+    "z3-solver>=4.12",
+]
+
+[build-system]
+requires = ["uv_build>=0.8.8,<0.9.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = ["pytest", "pyright", "hypothesis"]
+
+[tool.pyright]
+include = ["src/condition_ir"]
+typeCheckingMode = "basic"
+
+[tool.pytest.ini_options]
+markers = [
+    "property: marks tests as Hypothesis property tests",
+]
